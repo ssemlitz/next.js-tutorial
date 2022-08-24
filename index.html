@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next.js Practice</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script type="text/javascript">
-    const app = document.getElementById('app')
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Next.js Practice</title>
+  </head>
+  <body>
+    <div id="app"></div>
 
-    const header = document.createElement('h1')
+    <script type="text/jsx">
+      function Header({ title }) {
+        return <h1>{title ? title : 'Default title'}</h1>;
+      }
+      
+      function Page() {
+        return (
+          <div>
+            <Header />
+          </div>
+        );
+      }
 
-    const headerContent = document.createTextNode('Develop. Preview. Ship. 🚀')
+      function HomePage() {
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+        
+        return (
+          <div>
+            <Header title="Develop. Preview. Ship. 🚀" />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
 
-    header.appendChild(headerContent)
-
-    app.appendChild(header)
-  </script>
-</body>
+      ReactDOM.render(<HomePage />, app);
+    </script>
+  </body>
 </html>
